@@ -14,13 +14,13 @@ fi
 CA_Config=${Root_CA0_Dir}/RootCA.config
 
 if [ -d ${Root_CA0_Dir} ]; then
-	openssl genrsa -aes128 -out ${Root_CA0_Dir}/RootCA.key 2048
+	openssl genrsa -aes128 -out ${Root_CA0_Dir}/private/RootCA.key 2048
 else
 	exit_with_failure "No RootCA folder found, exit.";
 fi
 
 if [ -f ${CA_Config} ] ; then
-	openssl req -new -config ${CA_Config} -out ${Root_CA0_Dir}/RootCA.csr -key ${Root_CA0_Dir}/RootCA.key
+	openssl req -new -config ${CA_Config} -out ${Root_CA0_Dir}/RootCA.csr -key ${Root_CA0_Dir}/private/RootCA.key
 else
 	echo "No RootCA.config file."
 	exit 1
